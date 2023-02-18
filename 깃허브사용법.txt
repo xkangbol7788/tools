@@ -1,0 +1,40 @@
+https://github.com
+
+new로 새로운 repository를 생성(프로젝트당 하나의 repository 명 )
+ID는 본인ID : xkangbol
+https://github.com/ID/프로젝트명
+
+<조장기준임>
+생성버튼 후 오른쪽 상단에 Settings 클릭
+왼쪽 상단 옵션중에 Manage access 클릭
+
+    하단에 Invite a collaborator 버튼클릭 후 조원들의 ID를 등록한다._
+   => 등록된 조원들은 깃헙에서 승인을 해야됨_클릭하면 pending invite이 클리어됨
+
+git-scm.com 사이트에서 최종버전을 다운받아 실행한다.
+이클립스에서 원하는 프로젝트를 오른쪽 클릭 후 맨 하단의 propetites 클릭
+Resource의 Location의 오른쪽 아이콘: Show in System Explorer를 클릭한다.
+그럼 탐색이에서 해당 프로젝트의 폴더에서 더블클릭하여 하단으로 들어간다
+.settings 폴더가 보이는 화면에서 빈공간을 오른쪽 클릭하고 메뉴중에서 "Git bash Here"를 선택
+DOS창에서 사용자 등록함
+$ git config --global user.name 엔터를 치고 조장본인의 ID가 안보이면 왼쪽명령어치고 뒤에 "ID"만 붙힌다
+$ git config --global user.email 엔터를 치고 조장본인의 이멜이 안보이면 왼쪽명령어치고 뒤에 "이멜"만 붙힌다
+$ pwd를 치면 현재 공유하고 싶은 프로젝트명이 보여야봄
+$ git init 치고 엔터를 치면 해당 해당 화면에서 .git이라는 폴더가 생긴다.
+비쥬얼 스튜디오가 설치 안되였으면 설치
+$ code . 를 클릭하면 비쥬얼 스튜디오가 뜨는데 거기서 왼쪽 explorer의 빈곳를 클릭하여 새로운 파일 .gitignore를 생성하고 오른쪽에 해당 폴더에서 백업에 필요없는 폴더와 파일을 등록하고 저장한다.
+$ git status엔터를 치고 관리되고 있는 폴더 및 파일이 보이는데(보통 src, site_template, lib, .gitignore만 보임.
+$ git add .gitignore 치고 $git status를 치면 방금친 .gitignore 파일이 녹색으로 변경된것을 확인할 수 있다.
+$ git add . 치면 현재 폴더에 있는 모든 폴더가 깃헙과 동기화가 가능할 수 있도록 올라간다.
+이후 $ git commit -m "현재저장의 정보를 알수 있는 명칭"을 등록함
+깃헙과 동기화는 $ git remote add origin https://github.com/ID/프로젝트명.git 
+
+$ git remote -v 치면 아래의 두개의 파일이 보이면 정상
+origin  https://github.com/ID/프로젝트명.git (fetch)
+origin  https://github.com/ID/프로젝트명.git (push)
+
+보통 퇴근 전에 관리자모도르 DOS창에서 
+>git status  엔터로 상태확인 빨간색이 있으면 
+>git add .   로 변경내역 추가
+>git add . 엔터 >git commit -m "수정추가정보등록" 
+>git add . 엔터 >git push origin master 로  깃헙으로 동기화 후 퇴근함
