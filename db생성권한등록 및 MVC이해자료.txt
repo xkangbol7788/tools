@@ -1,0 +1,62 @@
+http://docs.tobesoft.com/getting_started_nexacro_n_ko#f80e3f552e01dea2
+jquery > w3schools.com
+적용가이드
+git-scm.com 조장만 처리
+getbootstrap.com -> CDN으로 불러오는것임
+thymeleaf.org
+
+create database mybatis_db default character utfBmb4 default collate utfBmb4_general_cl
+create user 'mybatis'@'%' identified by 'mybatis1234'
+grant al on mybatis_db.* to 'mybatis'@'%'
+use mybatis_db
+
+★ memberWrite에서 id중복체크 버튼 클릭시 idcheck.do로 비동기식 데이타 전송
+    $.ajax( 전송_userid 전세팅.. 전송후 세팅=결과리턴받음)를 받아옴
+
+★ MemberController
+   @Resource(name="deptService") 
+    private DeptSerice deptSerive
+
+
+   @RequestMapping("/idcheck.do") 
+   @ReponseBody (비동기식 데이타 전송에서 메세지를 전달이 필요할때 사용)
+     public String selectMemberIdCheck(String userid) 
+     string message = "";
+     int count = memberSerivce.selectMemberIdCheck(uerid);
+     if( count == 0) { message = "ok"}
+
+     return message;
+
+★ MemberService.java (명세역할 , 추상화, interface, DB연동관계정의)
+
+    public interface MemberService {
+       public String insertMember(MemberVO vo) throws Exception;  
+       public Int selectMemberIdCheck(String userid) throws Exception;       }
+
+★ MemberImpl.java(구현체..완성된모습?, 프로그램구현)
+    @Service("memberService")	
+    public class MemberServiceImpl implements MemberService {
+         @Resource(name="memberDAO")
+          public MemberDAO memberDAO
+   
+          @Override (다형성:오버라이딩, 오버로딩)
+          public int selectMemberIdCheck(String userid) throws Exception{
+  	   return memberDAO.selectMemberIdCheck(userid)}
+
+★ MemberDAO.java (DB연결담당)
+    @Repository("memberDAO")	
+     public class MemberDAO extends EgovAbstractDAO {
+         public int selectMemberidCheck(String userid) {
+         return (int) select("memberDAO.selectMemberidCheck", userid) ;
+          }     
+     }
+
+★  Member_SQL.xml
+      <insert> insert finto -------  <insert>
+      <select id="memberDAO.selectMemberIdCheck" result class= "java.Lang.Integer">  
+        SELECT COUNT(*) FROM MEMBER WHERE USERID = #userid#
+      </select>
+
+★ MemberVO.java
+    member 테이블 그대로 MemberVO 클래스명으로 private String userid .........
+    Generate setter and getter활용으로 완료
